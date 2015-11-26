@@ -1,4 +1,5 @@
 [
 	{ "name":"France", "fileName":"france" },
-	{ "name":"China", "fileName":"china" }
+	{ "name":"China", "fileName":"china" },
+	{ "name":"U.S.A.", "fileName":"usa" }
 ]
