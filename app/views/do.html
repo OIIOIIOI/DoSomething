@@ -1,0 +1,98 @@
+
+<div class="container">
+	
+	<div class="jumbotron">
+		<h1>Do something</h1>
+		<p>A motivational tool by <a href="http://01101101.fr">01101101</a></p>
+	</div>
+	
+	<div class="alert alert-info">
+		<div class="row">
+			<div class="col-sm-6 question">
+				<h4><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+				Which country were you born in?</h4>
+			</div>
+			<div class="col-sm-6 answer">
+				<select name="countrySelect" id="countrySelect"
+				ng-options="c.name for c in countries | orderBy:c.name"
+				ng-model="selCountry"
+				ng-change="chooseCountry()"></select>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-6 question">
+				<h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+				Are you female or male?</h4>
+			</div>
+			<div class="col-sm-6 answer">
+				<select name="genderSelect" id="genderSelect"
+				ng-options="g.name for g in genders"
+				ng-model="selGender"
+				ng-change="refreshResults()"></select>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-6 question">
+			<h4><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+			When were you born?</h4>
+			</div>
+			<div class="col-sm-6 answer">
+				<select name="yearSelect" id="yearSelect"
+				ng-options="d.y for d in country.data | orderBy:d.y"
+				ng-model="selYear"
+				ng-change="chooseYear()"></select>
+				<!-- Month -->
+				<select name="monthSelect" id="monthSelect"
+				ng-options="m.s for m in months"
+				ng-model="selMonth"
+				ng-change="refreshResults()"></select>
+				<!-- Day -->
+				<select name="daySelect" id="daySelect"
+				ng-options="d for d in days"
+				ng-model="selDay"
+				ng-change="refreshResults()"></select>
+			</div>
+		</div>
+	</div>
+	
+	<div class="pb">
+		<h3 style="text-align:center;">You have reached {{ elapsed | number:2 }}% of your life expectancy</h3>
+		<uib-progressbar max="100" value="elapsed" style="height:30px">
+			<span style="color:white; white-space:nowrap; line-height:30px;">{{ elapsed | number:8 }}%</span>
+		</uib-progressbar>
+	</div>
+	
+	<div class="alert alert-warning" role="alert">
+		<div class="row">
+			<h4>What?</h4>
+			<p>
+				The life expectancy at birth of a {{ selGender.name | lowercase }} born in {{ selCountry.name }} in {{ selYear.y }} is <strong>{{ lifeExp }} years</strong>.
+				<br/>You are <strong>{{ age | number:2 }} years</strong> old. That's <strong>{{ elapsed | number:2 }}%</strong> of your life expectancy.
+			</p>
+		</div>
+		<div class="row">
+			<h4>So am I supposed to die in {{ lifeExp - age | number:2 }} years?</h4>
+			<p>Not really, no. Don't worry :)</p>
+			<p>
+				Life expectancy at birth indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life.
+				<br/>Of course, these patterns change during a person's life and a lot of other parameters should be taken into account for a more accurate result.
+				<br/>This is not the point of this app.
+			</p>
+		</div>
+		<div class="row">
+			<h4>What's the point then?</h4>
+			<p>
+				The idea is simply to remind us that time goes by, that we are going to die one day and that maybe we should do these things we want to do - before it's too late.
+				<br/>It is really just a motivational tool for me, as well as a fun data representation ;)
+			</p>
+		</div>
+	</div>
+	
+	<p class="credits">
+		The life expectancy data used in this app was downloaded from <a href="http://data.worldbank.org/">The&nbsp;World&nbsp;Bank</a>.
+		<br/><span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span>
+	</p>
+	
+</div>
