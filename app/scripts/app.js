@@ -15,8 +15,12 @@ angular.module('doSomethingApp', [
 	'ngRoute',
 	'ngSanitize',
 	'ngTouch',
-	'ui.bootstrap'
+	'ui.bootstrap',
+	'LocalStorageModule'
 	])
+	.config(['localStorageServiceProvider', function(localStorageServiceProvider){
+		localStorageServiceProvider.setPrefix('dols');
+	}])
 	.config(function ($routeProvider) {
 		$routeProvider
 		.when('/', {
